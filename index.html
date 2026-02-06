@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY CONCEPT CAR 2026</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-navy': '#0a0a1a',
+                        'neon-cyan': '#00FFFF',
+                        'neon-magenta': '#FF00FF',
+                        'electric-blue': '#0066FF',
+                    },
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #0d1025 50%, #0a0a1a 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+        }
+
+        .neon-glow-cyan {
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3), 0 0 40px rgba(0, 255, 255, 0.1);
+        }
+
+        .neon-text-cyan {
+            color: #00FFFF;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(0, 255, 255, 0.3);
+        }
+
+        .holo-button {
+            background: linear-gradient(135deg, #00FFFF 0%, #0066FF 50%, #FF00FF 100%);
+            background-size: 200% 200%;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 48px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #0a0a1a;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .holo-button:hover {
+            background-position: 100% 0;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.3);
+        }
+
+        .secondary-button {
+            background: transparent;
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            border-radius: 8px;
+            padding: 12px 32px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #00FFFF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-button:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: #00FFFF;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .cyber-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 14px 18px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1rem;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .cyber-input:focus {
+            outline: none;
+            border-color: #00FFFF;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.05);
+        }
+
+        .cyber-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .radio-option {
+            position: relative;
+        }
+
+        .radio-option input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .radio-label {
+            display: block;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .radio-option input:checked + .radio-label {
+            background: rgba(0, 255, 255, 0.15);
+            border-color: #00FFFF;
+            color: #00FFFF;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        }
+
+        .radio-label:hover {
+            background: rgba(0, 255, 255, 0.08);
+            border-color: rgba(0, 255, 255, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        .animate-slide-up-delay-1 { animation: slideUp 0.6s ease 0.1s forwards; opacity: 0; }
+        .animate-slide-up-delay-2 { animation: slideUp 0.6s ease 0.2s forwards; opacity: 0; }
+        .animate-slide-up-delay-3 { animation: slideUp 0.6s ease 0.3s forwards; opacity: 0; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.5), 0 0 60px rgba(0, 255, 255, 0.3); }
+        }
+
+        .animate-glow-pulse {
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes textShimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .text-shimmer {
+            background: linear-gradient(90deg, #00FFFF, #FF00FF, #00FFFF);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShimmer 3s linear infinite;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00FFFF, #0066FF, #FF00FF);
+            background-size: 200% 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .terminal-window {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 8px 12px;
+            display: flex;
+            gap: 6px;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .terminal-body {
+            padding: 16px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .terminal-line {
+            color: #00FFFF;
+            margin-bottom: 4px;
+        }
+
+        .terminal-line::before {
+            content: '> ';
+            color: #FF00FF;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: #00FFFF;
+        }
+
+        .result-image-container {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .result-image {
+            width: 100%;
+            display: block;
+        }
+
+        .player-card {
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+        }
+
+        .player-card-header {
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .data-row:last-child {
+            border-bottom: none;
+        }
+
+        .data-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+        }
+
+        .data-value {
+            color: #00FFFF;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .radio-group {
+                grid-template-columns: 1fr;
+            }
+            .holo-button {
+                padding: 14px 32px;
+                font-size: 1rem;
+            }
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.3); }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 255, 255, 0.3); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 255, 255, 0.5); }
+    </style>
+</head>
+<body class="bg-deep-navy min-h-screen overflow-x-hidden">
+    <div id="root"></div>
+
+    <!-- React 18 UMD -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- JWT Library for Kling AI Authentication -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.8.6/jsrsasign-all-min.js"></script>
+
+    <script type="text/babel">
+        // ===================================
+        // Kling AI Configuration
+        // ===================================
+        const CONFIG = {
+            // CORS Proxy for static file usage
+            CORS_PROXY: 'https://corsproxy.io/?',
+            KLING_API_BASE: 'https://api.klingai.com',
+            KLING_ACCESS_KEY: 'ABK84LFTTkgrdCRbk9BFNm3QT3CmARkC',
+            KLING_SECRET_KEY: 'JeanHpRntYNHfnfyGn8AEpJtArYLedrE',
+            KLING_MODEL: 'kling-v2-1',
+            POLL_INTERVAL: 3000,
+            MAX_POLL_ATTEMPTS: 60
+        };
+
+        // Generate JWT Token for Kling AI
+        function generateKlingJWT() {
+            const header = { alg: 'HS256', typ: 'JWT' };
+            const now = Math.floor(Date.now() / 1000);
+            const payload = {
+                iss: CONFIG.KLING_ACCESS_KEY,
+                exp: now + 1800,
+                nbf: now - 5
+            };
+            return KJUR.jws.JWS.sign('HS256', JSON.stringify(header), JSON.stringify(payload), CONFIG.KLING_SECRET_KEY);
+        }
+
+        // Helper to make proxied API calls
+        function getProxiedUrl(path) {
+            return CONFIG.CORS_PROXY + encodeURIComponent(CONFIG.KLING_API_BASE + path);
+        }
+
+        const WORK_STYLE_MAP = {
+            'speed': {
+                label: '爆速レスポンス',
+                description: '即レス対応、スピード重視',
+                carShape: 'Cyber Formula Racing Car with aerodynamic wings and speed-focused design',
+                icon: '⚡'
+            },
+            'deep': {
+                label: 'ディープラーニング',
+                description: '深く考える、研究タイプ',
+                carShape: 'Autonomous Research Vehicle with sensor arrays and AI computing modules',
+                icon: '🧠'
+            },
+            'heavy': {
+                label: '高耐久ヘビーデューティ',
+                description: '粘り強く、持久力重視',
+                carShape: 'Armored Heavy Duty Truck with reinforced chassis and industrial strength',
+                icon: '🛡️'
+            },
+            'hybrid': {
+                label: 'ハイブリッド・マルチターボ',
+                description: '多彩なスキル、オールラウンダー',
+                carShape: 'Transformable Multi-Mode Vehicle with adaptive configuration system',
+                icon: '🔄'
+            }
+        };
+
+        const TEAM_ROLE_MAP = {
+            'glass': {
+                label: 'シースルー・強化ガラス',
+                description: '透明性重視、オープンな姿勢',
+                material: 'Transparent reinforced glass panels with holographic displays',
+                icon: '🔍'
+            },
+            'armor': {
+                label: 'マットブラック・合金アーマー',
+                description: '守りの要、信頼の盾',
+                material: 'Matte black titanium armor plating with stealth coating',
+                icon: '🖤'
+            },
+            'chrome': {
+                label: 'オーロラ・クローム塗装',
+                description: '目立つ存在、チームの顔',
+                material: 'Iridescent aurora chrome finish with color-shifting properties',
+                icon: '✨'
+            },
+            'carbon': {
+                label: 'モジュラー・カーボンファイバー',
+                description: '柔軟対応、適応力抜群',
+                material: 'Modular carbon fiber composite with reconfigurable sections',
+                icon: '🧩'
+            }
+        };
+
+        // MBTI → デザインDNA（各文字が異なるデザイン要素に影響）
+        const MBTI_DESIGN = {
+            // E/I → 存在感・スタンス
+            'E': 'bold aggressive wide-body stance, attention-grabbing presence',
+            'I': 'sleek minimalist silhouette, understated elegant refinement',
+            // S/N → デザイン哲学
+            'S': 'practical aerodynamic engineering, functional proven design',
+            'N': 'experimental avant-garde concept, unconventional futuristic shapes',
+            // T/F → ライン・フォルム
+            'T': 'sharp angular geometric lines, precise technical aesthetic',
+            'F': 'flowing organic curves, harmonious emotional design language',
+            // J/P → 構造・レイアウト
+            'J': 'symmetrical structured layout, organized systematic lighting',
+            'P': 'asymmetric dynamic elements, fluid adaptive surfaces'
+        };
+
+        // 名前 → カラーパレット
+        const COLOR_THEMES = [
+            { en: 'cyberpunk neon pink and electric blue color scheme', ja: 'サイバーパンク・ネオンピンク × エレクトリックブルー' },
+            { en: 'midnight purple with luxurious gold accent lighting', ja: 'ミッドナイトパープル × ゴールドアクセント' },
+            { en: 'arctic white with ice blue LED highlights', ja: 'アークティックホワイト × アイスブルー' },
+            { en: 'volcanic red with black carbon fiber trim', ja: 'ヴォルカニックレッド × ブラックカーボン' },
+            { en: 'emerald green with bronze metallic accents', ja: 'エメラルドグリーン × ブロンズメタリック' },
+            { en: 'sunset orange gradient fading to magenta', ja: 'サンセットオレンジ → マゼンタグラデーション' },
+            { en: 'chrome silver with holographic rainbow reflections', ja: 'クロームシルバー × ホログラフィックレインボー' },
+            { en: 'deep ocean blue with bioluminescent teal glow', ja: 'ディープオーシャンブルー × バイオルミネセント' },
+            { en: 'matte gunmetal gray with crimson red details', ja: 'マットガンメタル × クリムゾンレッド' },
+            { en: 'pearl white with rose gold elegant trim', ja: 'パールホワイト × ローズゴールド' },
+            { en: 'electric yellow with black racing stripes', ja: 'エレクトリックイエロー × ブラックストライプ' },
+            { en: 'cosmic purple with starlight silver sparkles', ja: 'コズミックパープル × スターライトシルバー' }
+        ];
+
+        function nameToColorTheme(name) {
+            if (!name) return '';
+            const hash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+            return COLOR_THEMES[hash % COLOR_THEMES.length].en;
+        }
+
+        function nameToColorThemeJa(name) {
+            if (!name) return '';
+            const hash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+            return COLOR_THEMES[hash % COLOR_THEMES.length].ja;
+        }
+
+        // MBTI日本語マッピング
+        const MBTI_DESIGN_JA = {
+            'E': '大胆なワイドボディ',
+            'I': 'ミニマルなシルエット',
+            'S': '実用的エアロダイナミクス',
+            'N': '実験的アバンギャルド',
+            'T': 'シャープな幾何学ライン',
+            'F': '流麗なオーガニックカーブ',
+            'J': 'シンメトリー構造',
+            'P': 'アシンメトリーダイナミクス'
+        };
+
+        // MBTI文字列からデザイン要素を抽出
+        function mbtiToDesignElements(mbti) {
+            if (!mbti || mbti.length !== 4) return '';
+            const elements = [];
+            for (const char of mbti.toUpperCase()) {
+                if (MBTI_DESIGN[char]) {
+                    elements.push(MBTI_DESIGN[char]);
+                }
+            }
+            return elements.join(', ');
+        }
+
+        function mbtiToDesignElementsJa(mbti) {
+            if (!mbti || mbti.length !== 4) return '';
+            const elements = [];
+            for (const char of mbti.toUpperCase()) {
+                if (MBTI_DESIGN_JA[char]) {
+                    elements.push(MBTI_DESIGN_JA[char]);
+                }
+            }
+            return elements.join(' / ');
+        }
+
+        // ビジョン → テーマキーワード抽出
+        const VISION_KEYWORDS = [
+            { pattern: 'リーダー|導く|率いる|先頭', en: 'commanding flagship presence with authoritative design', ja: 'フラッグシップ・コマンダー' },
+            { pattern: '革新|イノベーション|新しい|挑戦', en: 'breakthrough experimental prototype aesthetic', ja: 'ブレイクスルー・プロトタイプ' },
+            { pattern: '安定|信頼|堅実|確実', en: 'reliable fortress-like robust construction', ja: 'フォートレス・ロバスト' },
+            { pattern: 'グローバル|世界|海外|国際', en: 'internationally inspired cosmopolitan fusion', ja: 'コスモポリタン・フュージョン' },
+            { pattern: 'スピード|速い|加速|俊敏', en: 'extreme aerodynamic streamlined velocity design', ja: 'エクストリーム・ベロシティ' },
+            { pattern: 'チーム|仲間|協力|連携', en: 'collaborative spacious team-oriented interior', ja: 'チームコラボレーション' },
+            { pattern: '成長|進化|発展|向上', en: 'evolutionary transforming adaptive design', ja: 'エボリューション・アダプティブ' },
+            { pattern: '創造|クリエイティブ|アート', en: 'artistic sculptural creative expression', ja: 'アーティスティック・スカルプチャー' },
+            { pattern: 'テクノロジー|技術|AI|DX', en: 'high-tech advanced digital integration', ja: 'ハイテク・デジタルインテグレーション' },
+            { pattern: '環境|エコ|サステナブル', en: 'eco-friendly sustainable green technology', ja: 'エコ・サステナブル' }
+        ];
+
+        function visionToTheme(vision) {
+            if (!vision) return '';
+            for (const item of VISION_KEYWORDS) {
+                if (new RegExp(item.pattern).test(vision)) {
+                    return item.en;
+                }
+            }
+            return `design inspired by the concept of "${vision}"`;
+        }
+
+        function visionToThemeJa(vision) {
+            if (!vision) return '';
+            for (const item of VISION_KEYWORDS) {
+                if (new RegExp(item.pattern).test(vision)) {
+                    return item.ja;
+                }
+            }
+            return `「${vision}」インスパイア`;
+        }
+
+        const LOADING_MESSAGES = [
+            'Initializing Kling AI Engine...',
+            'Authenticating with JWT token...',
+            'Analyzing MBTI personality matrix...',
+            'Extracting design DNA from profile...',
+            'Generating name-based color palette...',
+            'Parsing vision keywords...',
+            'Compiling chassis blueprint...',
+            'Applying material specifications...',
+            'Rendering personalized exterior...',
+            'Finalizing unique concept car...'
+        ];
+
+        const FORM_OPTIONS = {
+            workStyles: Object.entries(WORK_STYLE_MAP).map(([key, value]) => ({
+                value: key, label: value.label, description: value.description, icon: value.icon
+            })),
+            teamRoles: Object.entries(TEAM_ROLE_MAP).map(([key, value]) => ({
+                value: key, label: value.label, description: value.description, icon: value.icon
+            }))
+        };
+
+        // ===================================
+        // Kling AI API Functions
+        // ===================================
+
+        function buildImagePrompt(formData) {
+            const workStyle = WORK_STYLE_MAP[formData.workStyle];
+            const teamRole = TEAM_ROLE_MAP[formData.teamRole];
+
+            // 基本プロンプト
+            const basePrompt = `Futuristic concept car design for 2026, photorealistic render, studio lighting, high detail, automotive design visualization, dramatic lighting, sleek modern aesthetic, no text or watermarks`;
+
+            // 各要素を取得
+            const carShape = workStyle ? workStyle.carShape : '';
+            const material = teamRole ? teamRole.material : '';
+            const colorTheme = nameToColorTheme(formData.driverName);
+            const mbtiDesign = mbtiToDesignElements(formData.mbtiType);
+            const visionTheme = visionToTheme(formData.vision);
+
+            const promptParts = [
+                basePrompt,
+                carShape,
+                material,
+                colorTheme,
+                mbtiDesign,
+                visionTheme
+            ];
+
+            const finalPrompt = promptParts.filter(part => part).join(', ');
+            console.log('Generated prompt:', finalPrompt);
+            return finalPrompt;
+        }
+
+        // Create image generation task
+        async function createImageTask(prompt) {
+            const token = generateKlingJWT();
+            const url = getProxiedUrl('/v1/images/generations');
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    model_name: CONFIG.KLING_MODEL,
+                    prompt: prompt,
+                    n: 1,
+                    aspect_ratio: '16:9'
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || `HTTP Error: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.code !== 0) {
+                throw new Error(data.message || 'タスク作成に失敗しました');
+            }
+
+            return data.data.task_id;
+        }
+
+        // Poll task status
+        async function pollTaskStatus(taskId) {
+            const token = generateKlingJWT();
+            const url = getProxiedUrl(`/v1/images/generations/${taskId}`);
+
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || `HTTP Error: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.code !== 0) {
+                throw new Error(data.message || 'ステータス取得に失敗しました');
+            }
+
+            return data.data;
+        }
+
+        // Wait for task completion
+        async function waitForCompletion(taskId, onProgress) {
+            let attempts = 0;
+
+            while (attempts < CONFIG.MAX_POLL_ATTEMPTS) {
+                const taskData = await pollTaskStatus(taskId);
+
+                const status = taskData.task_status;
+                console.log(`Task status: ${status}`);
+
+                if (status === 'succeed') {
+                    onProgress(100);
+                    if (taskData.task_result?.images?.[0]?.url) {
+                        return taskData.task_result.images[0].url;
+                    }
+                    throw new Error('画像URLが取得できませんでした');
+                }
+
+                if (status === 'failed') {
+                    throw new Error(taskData.task_status_msg || '画像生成に失敗しました');
+                }
+
+                // Update progress based on attempts
+                const progress = Math.min(20 + (attempts * 70 / CONFIG.MAX_POLL_ATTEMPTS), 90);
+                onProgress(progress);
+
+                await new Promise(resolve => setTimeout(resolve, CONFIG.POLL_INTERVAL));
+                attempts++;
+            }
+
+            throw new Error('タイムアウト：画像生成に時間がかかりすぎています');
+        }
+
+        async function generateConceptCar(formData, onProgress) {
+            const prompt = buildImagePrompt(formData);
+            console.log('Generated prompt:', prompt);
+
+            onProgress(5);
+
+            // Create task
+            const taskId = await createImageTask(prompt);
+            console.log('Task created:', taskId);
+
+            onProgress(15);
+
+            // Wait for completion
+            const imageUrl = await waitForCompletion(taskId, onProgress);
+
+            return imageUrl;
+        }
+
+        function downloadImage(imageUrl, filename = 'my-concept-car-2026.png') {
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = filename;
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // ===================================
+        // React Components
+        // ===================================
+        const { useState, useEffect } = React;
+
+        function StartScreen({ onStart }) {
+            return (
+                <div className="min-h-screen flex flex-col items-center justify-center px-4">
+                    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+                        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-cyan/5 rounded-full blur-3xl"></div>
+                        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-magenta/5 rounded-full blur-3xl"></div>
+                    </div>
+
+                    <div className="relative z-10 text-center animate-fade-in">
+                        <div className="mb-8">
+                            <h1 className="font-orbitron text-5xl md:text-7xl font-black text-shimmer mb-4">
+                                MY CONCEPT CAR
+                            </h1>
+                            <div className="font-orbitron text-4xl md:text-6xl font-bold neon-text-cyan">
+                                2026
+                            </div>
+                        </div>
+
+                        <p className="font-roboto-mono text-lg md:text-xl text-white/60 mb-12 animate-slide-up-delay-1">
+                            性格とビジョンを、AIがカタチにする
+                        </p>
+
+                        <div className="flex items-center justify-center gap-4 mb-12 animate-slide-up-delay-2">
+                            <div className="w-24 h-px bg-gradient-to-r from-transparent via-neon-cyan to-transparent"></div>
+                            <div className="w-2 h-2 bg-neon-cyan rounded-full animate-pulse"></div>
+                            <div className="w-24 h-px bg-gradient-to-r from-transparent via-neon-cyan to-transparent"></div>
+                        </div>
+
+                        <div className="animate-slide-up-delay-3">
+                            <button onClick={onStart} className="holo-button animate-pulse-slow animate-glow-pulse">
+                                START ENGINE
+                            </button>
+                        </div>
+
+                        <p className="mt-16 text-white/30 text-sm font-roboto-mono">
+                            Powered by Kling AI
+                        </p>
+                    </div>
+                </div>
+            );
+        }
+
+        function InputForm({ onSubmit, onBack }) {
+            const [formData, setFormData] = useState({
+                driverName: '', mbtiType: '', workStyle: '', teamRole: '', vision: ''
+            });
+            const [errors, setErrors] = useState({});
+
+            const handleChange = (field, value) => {
+                setFormData(prev => ({ ...prev, [field]: value }));
+                if (errors[field]) setErrors(prev => ({ ...prev, [field]: null }));
+            };
+
+            const validate = () => {
+                const newErrors = {};
+                if (!formData.driverName.trim()) newErrors.driverName = 'ドライバー名を入力してください';
+                if (!formData.workStyle) newErrors.workStyle = '仕事スタイルを選択してください';
+                if (!formData.teamRole) newErrors.teamRole = 'チームでの役割を選択してください';
+                setErrors(newErrors);
+                return Object.keys(newErrors).length === 0;
+            };
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                if (validate()) onSubmit(formData);
+            };
+
+            return (
+                <div className="min-h-screen flex items-center justify-center px-4 py-12">
+                    <div className="w-full max-w-2xl">
+                        <div className="text-center mb-8 animate-fade-in">
+                            <h2 className="font-orbitron text-3xl md:text-4xl font-bold neon-text-cyan mb-2">
+                                DRIVER PROFILE
+                            </h2>
+                            <p className="text-white/50 font-roboto-mono">あなたのデータを入力してください</p>
+                        </div>
+
+                        <form onSubmit={handleSubmit} className="glass-card p-8 animate-slide-up">
+                            <div className="mb-6">
+                                <label className="block text-neon-cyan font-orbitron text-sm mb-2">
+                                    DRIVER NAME <span className="text-neon-magenta">*</span>
+                                </label>
+                                <input type="text" className="cyber-input" placeholder="名前を入力..."
+                                    value={formData.driverName}
+                                    onChange={(e) => handleChange('driverName', e.target.value)} />
+                                {errors.driverName && <p className="text-neon-magenta text-sm mt-1">{errors.driverName}</p>}
+                            </div>
+
+                            <div className="mb-6">
+                                <label className="block text-neon-cyan font-orbitron text-sm mb-2">
+                                    MBTI TYPE <span className="text-white/30">(任意)</span>
+                                </label>
+                                <input type="text" className="cyber-input" placeholder="例: INTJ, ENFP..."
+                                    value={formData.mbtiType}
+                                    onChange={(e) => handleChange('mbtiType', e.target.value.toUpperCase())}
+                                    maxLength={4} />
+                            </div>
+
+                            <div className="mb-6">
+                                <label className="block text-neon-cyan font-orbitron text-sm mb-3">
+                                    WORK STYLE <span className="text-neon-magenta">*</span>
+                                </label>
+                                <div className="radio-group">
+                                    {FORM_OPTIONS.workStyles.map((option) => (
+                                        <div key={option.value} className="radio-option">
+                                            <input type="radio" id={`work-${option.value}`} name="workStyle"
+                                                value={option.value} checked={formData.workStyle === option.value}
+                                                onChange={(e) => handleChange('workStyle', e.target.value)} />
+                                            <label htmlFor={`work-${option.value}`} className="radio-label">
+                                                <span className="text-lg mr-2">{option.icon}</span>
+                                                <span className="font-bold">{option.label}</span>
+                                                <span className="block text-xs text-white/50 mt-1">{option.description}</span>
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
+                                {errors.workStyle && <p className="text-neon-magenta text-sm mt-2">{errors.workStyle}</p>}
+                            </div>
+
+                            <div className="mb-6">
+                                <label className="block text-neon-cyan font-orbitron text-sm mb-3">
+                                    TEAM ROLE <span className="text-neon-magenta">*</span>
+                                </label>
+                                <div className="radio-group">
+                                    {FORM_OPTIONS.teamRoles.map((option) => (
+                                        <div key={option.value} className="radio-option">
+                                            <input type="radio" id={`role-${option.value}`} name="teamRole"
+                                                value={option.value} checked={formData.teamRole === option.value}
+                                                onChange={(e) => handleChange('teamRole', e.target.value)} />
+                                            <label htmlFor={`role-${option.value}`} className="radio-label">
+                                                <span className="text-lg mr-2">{option.icon}</span>
+                                                <span className="font-bold">{option.label}</span>
+                                                <span className="block text-xs text-white/50 mt-1">{option.description}</span>
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
+                                {errors.teamRole && <p className="text-neon-magenta text-sm mt-2">{errors.teamRole}</p>}
+                            </div>
+
+                            <div className="mb-8">
+                                <label className="block text-neon-cyan font-orbitron text-sm mb-2">
+                                    VISION 2026 <span className="text-white/30">(任意)</span>
+                                </label>
+                                <input type="text" className="cyber-input"
+                                    placeholder="2026年のあなたのビジョンを一言で..."
+                                    value={formData.vision}
+                                    onChange={(e) => handleChange('vision', e.target.value)} />
+                            </div>
+
+                            <div className="flex gap-4">
+                                <button type="button" onClick={onBack} className="secondary-button flex-1">BACK</button>
+                                <button type="submit" className="holo-button flex-1">GENERATE</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            );
+        }
+
+        function LoadingScreen({ progress }) {
+            const [messages, setMessages] = useState([]);
+            const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+
+            useEffect(() => {
+                if (currentMessageIndex < LOADING_MESSAGES.length) {
+                    const timer = setTimeout(() => {
+                        setMessages(prev => [...prev, LOADING_MESSAGES[currentMessageIndex]]);
+                        setCurrentMessageIndex(prev => prev + 1);
+                    }, 800);
+                    return () => clearTimeout(timer);
+                }
+            }, [currentMessageIndex]);
+
+            return (
+                <div className="min-h-screen flex items-center justify-center px-4">
+                    <div className="w-full max-w-xl text-center">
+                        <h2 className="font-orbitron text-2xl md:text-3xl font-bold neon-text-cyan mb-8 animate-fade-in">
+                            GENERATING YOUR CAR
+                        </h2>
+
+                        <div className="mb-8 animate-slide-up">
+                            <div className="progress-bar-container">
+                                <div className="progress-bar-fill" style={{ width: `${progress}%` }}></div>
+                            </div>
+                            <div className="text-neon-cyan font-roboto-mono mt-2">{Math.round(progress)}%</div>
+                        </div>
+
+                        <div className="terminal-window animate-slide-up-delay-1">
+                            <div className="terminal-header">
+                                <div className="terminal-dot bg-red-500"></div>
+                                <div className="terminal-dot bg-yellow-500"></div>
+                                <div className="terminal-dot bg-green-500"></div>
+                                <span className="ml-4 text-white/50 text-xs">kling_engine.exe</span>
+                            </div>
+                            <div className="terminal-body text-left">
+                                {messages.map((message, index) => (
+                                    <div key={index} className="terminal-line animate-fade-in">{message}</div>
+                                ))}
+                                {progress < 100 && (
+                                    <div className="terminal-line typing-cursor animate-fade-in">Processing</div>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="mt-8 flex justify-center gap-2">
+                            {[0, 1, 2].map((i) => (
+                                <div key={i} className="w-3 h-3 bg-neon-cyan rounded-full animate-pulse"
+                                    style={{ animationDelay: `${i * 0.2}s` }}></div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function ResultScreen({ imageUrl, formData, onRestart }) {
+            const workStyle = WORK_STYLE_MAP[formData.workStyle];
+            const teamRole = TEAM_ROLE_MAP[formData.teamRole];
+            const colorTheme = nameToColorThemeJa(formData.driverName);
+            const mbtiDesign = mbtiToDesignElementsJa(formData.mbtiType);
+            const visionTheme = visionToThemeJa(formData.vision);
+
+            const handleDownload = () => {
+                const filename = `concept-car-${formData.driverName.replace(/\s+/g, '-')}-2026.png`;
+                downloadImage(imageUrl, filename);
+            };
+
+            return (
+                <div className="min-h-screen py-12 px-4">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-8 animate-fade-in">
+                            <h2 className="font-orbitron text-3xl md:text-4xl font-bold text-shimmer mb-2">
+                                YOUR CONCEPT CAR
+                            </h2>
+                            <p className="text-white/50 font-roboto-mono">{formData.driverName}'s 2026 Vision</p>
+                        </div>
+
+                        <div className="result-image-container mb-8 animate-slide-up neon-glow-cyan">
+                            <img src={imageUrl} alt="Generated Concept Car" className="result-image" crossOrigin="anonymous" />
+                        </div>
+
+                        <div className="glass-card player-card p-6 mb-8 animate-slide-up-delay-1">
+                            <h3 className="font-orbitron text-xl font-bold player-card-header mb-4">DRIVER CARD</h3>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <div className="data-row">
+                                        <span className="data-label">DRIVER NAME</span>
+                                        <span className="data-value">{formData.driverName}</span>
+                                    </div>
+                                    {formData.mbtiType && (
+                                        <div className="data-row">
+                                            <span className="data-label">MBTI TYPE</span>
+                                            <span className="data-value">{formData.mbtiType}</span>
+                                        </div>
+                                    )}
+                                    <div className="data-row">
+                                        <span className="data-label">WORK STYLE</span>
+                                        <span className="data-value">{workStyle?.icon} {workStyle?.label}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="data-row">
+                                        <span className="data-label">TEAM ROLE</span>
+                                        <span className="data-value">{teamRole?.icon} {teamRole?.label}</span>
+                                    </div>
+                                    {formData.vision && (
+                                        <div className="data-row">
+                                            <span className="data-label">VISION 2026</span>
+                                            <span className="data-value">{formData.vision}</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="mt-6 pt-4 border-t border-white/10">
+                                <h4 className="font-orbitron text-sm text-neon-magenta mb-3">VEHICLE SPECS</h4>
+                                <div className="text-sm text-white/60 space-y-2">
+                                    <p><span className="text-neon-cyan">タイプ:</span> {workStyle?.label}</p>
+                                    <p><span className="text-neon-cyan">マテリアル:</span> {teamRole?.label}</p>
+                                    <p><span className="text-neon-cyan">カラー:</span> {colorTheme}</p>
+                                    {mbtiDesign && <p><span className="text-neon-cyan">デザインDNA:</span> {mbtiDesign}</p>}
+                                    {visionTheme && <p><span className="text-neon-cyan">テーマ:</span> {visionTheme}</p>}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up-delay-2">
+                            <button onClick={handleDownload} className="holo-button">DOWNLOAD IMAGE</button>
+                            <button onClick={onRestart} className="secondary-button">CREATE NEW DRIVER</button>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function ErrorScreen({ error, onRetry, onBack }) {
+            return (
+                <div className="min-h-screen flex items-center justify-center px-4">
+                    <div className="glass-card p-8 max-w-md text-center animate-fade-in">
+                        <div className="text-6xl mb-4">⚠️</div>
+                        <h2 className="font-orbitron text-2xl font-bold text-neon-magenta mb-4">ERROR</h2>
+                        <p className="text-white/70 mb-6 font-roboto-mono text-sm">{error}</p>
+                        <div className="flex gap-4">
+                            <button onClick={onBack} className="secondary-button flex-1">BACK</button>
+                            <button onClick={onRetry} className="holo-button flex-1">RETRY</button>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function App() {
+            const [screen, setScreen] = useState('start');
+            const [formData, setFormData] = useState(null);
+            const [generatedImage, setGeneratedImage] = useState(null);
+            const [progress, setProgress] = useState(0);
+            const [error, setError] = useState(null);
+
+            const handleStart = () => setScreen('form');
+
+            const handleFormSubmit = async (data) => {
+                setFormData(data);
+                setScreen('loading');
+                setProgress(0);
+                setError(null);
+
+                try {
+                    const imageUrl = await generateConceptCar(data, setProgress);
+                    setTimeout(() => {
+                        setGeneratedImage(imageUrl);
+                        setScreen('result');
+                    }, 500);
+                } catch (err) {
+                    console.error('Generation error:', err);
+                    setError(err.message);
+                    setScreen('error');
+                }
+            };
+
+            const handleBack = () => {
+                if (screen === 'form') setScreen('start');
+                else if (screen === 'error') setScreen('form');
+            };
+
+            const handleRestart = () => {
+                setFormData(null);
+                setGeneratedImage(null);
+                setProgress(0);
+                setError(null);
+                setScreen('start');
+            };
+
+            const handleRetry = () => {
+                if (formData) handleFormSubmit(formData);
+            };
+
+            return (
+                <div className="relative z-10">
+                    {screen === 'start' && <StartScreen onStart={handleStart} />}
+                    {screen === 'form' && <InputForm onSubmit={handleFormSubmit} onBack={handleBack} />}
+                    {screen === 'loading' && <LoadingScreen progress={progress} />}
+                    {screen === 'result' && <ResultScreen imageUrl={generatedImage} formData={formData} onRestart={handleRestart} />}
+                    {screen === 'error' && <ErrorScreen error={error} onRetry={handleRetry} onBack={handleBack} />}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
