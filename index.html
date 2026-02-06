@@ -377,8 +377,6 @@
         // Kling AI Configuration
         // ===================================
         const CONFIG = {
-            // CORS Proxy for static file usage
-            CORS_PROXY: 'https://corsproxy.io/?',
             KLING_API_BASE: 'https://api.klingai.com',
             KLING_ACCESS_KEY: 'ABK84LFTTkgrdCRbk9BFNm3QT3CmARkC',
             KLING_SECRET_KEY: 'JeanHpRntYNHfnfyGn8AEpJtArYLedrE',
@@ -400,9 +398,6 @@
         }
 
         // Helper to make proxied API calls
-        function getProxiedUrl(path) {
-            return CONFIG.CORS_PROXY + encodeURIComponent(CONFIG.KLING_API_BASE + path);
-        }
 
         const WORK_STYLE_MAP = {
             'speed': {
@@ -628,7 +623,7 @@
         // Create image generation task
         async function createImageTask(prompt) {
             const token = generateKlingJWT();
-            const url = getProxiedUrl('/v1/images/generations');
+            const url = CONFIG.KLING_API_BASE + '/v1/images/generations';
 
             const response = await fetch(url, {
                 method: 'POST',
@@ -661,7 +656,7 @@
         // Poll task status
         async function pollTaskStatus(taskId) {
             const token = generateKlingJWT();
-            const url = getProxiedUrl(`/v1/images/generations/${taskId}`);
+            const url = CONFIG.KLING_API_BASE + `/v1/images/generations/${taskId}`;
 
             const response = await fetch(url, {
                 method: 'GET',
