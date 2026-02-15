@@ -377,7 +377,8 @@
         // Kling AI Configuration
         // ===================================
         const CONFIG = {
-            KLING_API_BASE: 'https://api.klingai.com',
+            // Cloudflare Workers proxy for Kling AI API
+            KLING_API_BASE: 'https://tight-snowflake-cc3e.hzj395916678.workers.dev',
             KLING_ACCESS_KEY: 'ABK84LFTTkgrdCRbk9BFNm3QT3CmARkC',
             KLING_SECRET_KEY: 'JeanHpRntYNHfnfyGn8AEpJtArYLedrE',
             KLING_MODEL: 'kling-v2-1',
@@ -397,7 +398,10 @@
             return KJUR.jws.JWS.sign('HS256', JSON.stringify(header), JSON.stringify(payload), CONFIG.KLING_SECRET_KEY);
         }
 
-        // Helper to make proxied API calls
+        // Helper to get API URL (direct call without proxy)
+        function getApiUrl(path) {
+            return CONFIG.KLING_API_BASE + path;
+        }
 
         const WORK_STYLE_MAP = {
             'speed': {
@@ -623,7 +627,7 @@
         // Create image generation task
         async function createImageTask(prompt) {
             const token = generateKlingJWT();
-            const url = CONFIG.KLING_API_BASE + '/v1/images/generations';
+            const url = getApiUrl('/v1/images/generations');
 
             const response = await fetch(url, {
                 method: 'POST',
@@ -656,7 +660,7 @@
         // Poll task status
         async function pollTaskStatus(taskId) {
             const token = generateKlingJWT();
-            const url = CONFIG.KLING_API_BASE + `/v1/images/generations/${taskId}`;
+            const url = getApiUrl(`/v1/images/generations/${taskId}`);
 
             const response = await fetch(url, {
                 method: 'GET',
